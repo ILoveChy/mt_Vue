@@ -7,8 +7,8 @@
       :value="province"
       :showWrapperActive="provinceActive"
       @change_active="changeProvinceActive"
-       @change="changeProvince"
-       className="province"
+      @change="changeProvince"
+      class="province"
     />
     <m-select
       :list="cityList"
@@ -18,7 +18,7 @@
       @change_active="changeCityActive"
       @change="changeCity"
       :disabled="cityDisabled"
-      className="city"
+      class="city"
     />
     <span>直接搜索:</span>
     <el-select
@@ -36,7 +36,7 @@
 </template>
 <script>
 import MSelect from "./select.vue";
-import api from '@/api/index.js'
+import api from "@/api/index.js";
 export default {
   data() {
     return {
@@ -47,9 +47,9 @@ export default {
       cityActive: false,
       provinceActive: false,
       searchList: ["哈尔滨", "佳木斯", "牡丹江", "鹤岗"],
-      searchWord: '',
+      searchWord: "",
       loading: false,
-      cityDisabled: true,
+      cityDisabled: true
     };
   },
   components: {
@@ -57,12 +57,11 @@ export default {
   },
   created() {
     api.getProvince().then(res => {
-      this.provinceList = res.data.data.map((item) => {
+      this.provinceList = res.data.data.map(item => {
         item.name = item.provinceName;
         return item;
       });
-      console.log(this.provinceList)
-    })
+    });
   },
   methods: {
     changeProvinceActive(flag) {
@@ -78,18 +77,17 @@ export default {
       }
     },
     changeProvince(item) {
-        this.province = item.name;
-        this.cityDisabled = false;
-        this.cityList = item.cityInfoList;
+      this.province = item.name;
+      this.cityDisabled = false;
+      this.cityList = item.cityInfoList;
     },
     changeCity(item) {
-        this.city = item.name;
-        this.$store.dispatch('setPosition', item);
-        this.$router.push({name: 'index'})
+      this.city = item.name;
+      this.$store.dispatch("setPosition", item);
+      this.$router.push({ name: "index" });
     },
-    remoteMethod(val) {
-        // 请求后端接口
-        console.log(document.cookie, localStorage)
+    remoteMethod() {
+      // 请求后端接口
     }
   }
 };

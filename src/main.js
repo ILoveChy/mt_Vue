@@ -9,15 +9,11 @@ import store from './store'
 Vue.config.productionTip = false
 
 Vue.directive('document-click', {
-  bind (el, binding, vnode) {
+  bind(el, binding, vnode) {
     document.addEventListener('click', binding.value, false)
   },
-  inserted () {
-    console.log('inserted')
-  },
-  updated () {
-    console.log('updated')
-  }
+  inserted() {},
+  updated() {}
 })
 
 new Vue({

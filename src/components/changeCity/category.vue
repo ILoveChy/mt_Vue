@@ -32,7 +32,7 @@ export default {
   created() {
     api.getCityList().then(res => {
       let obj = {};
-      res.data.data.forEach((item, index) => {
+      res.data.data.forEach(item => {
         if (!obj[item.firstChar.toUpperCase()]) {
           obj[item.firstChar.toUpperCase()] = [];
         }
@@ -43,8 +43,8 @@ export default {
   },
   methods: {
     changeCity(item) {
-      this.$store.dispatch('setPosition',item);
-      this.$router.push({name:'index'});
+      this.$store.dispatch("setPosition", item);
+      this.$router.push({ name: "index" });
     }
   }
 };
